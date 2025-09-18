@@ -1,11 +1,13 @@
 <?php
 
-use App\Http\Controllers\CarsController;
-use App\Http\Controllers\Usercontroller;
+use App\Http\Controllers\Auth\AdminRegisterController;
+
+use app\Models\User;
 use App\Models\Cars;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
-
+use App\Http\Controllers\CarsController;
+use App\Http\Controllers\Usercontroller;
 
 Route::get('/',  [CarsController::class, 'welcome'])->name('welcome');
 Route::get('/createCar' , [CarsController::class, 'createCar'])->name('createCar');
@@ -23,7 +25,16 @@ Route::get('/register' , function(){
 
  Route::get('/login', function(){
    $Cars = Cars::where('user_id', Auth::id())->get();
-    return view('auth.login', compact('Cars'));
+   $Users = collect();
+    // Check if the user is authenticated and has the 'admin' role
+    
+    
+   if(Auth::check()=='admin'){
+       $Users = User::all();
+      }
+    return view('auth.login', compact('Cars', 'Users'));
+
+   
  })->name('login');
 Route::post('/login', [Usercontroller::class, 'login'])->name('loginUser');
 
@@ -33,3 +44,5 @@ Route::post('/login', [Usercontroller::class, 'login'])->name('loginUser');
     Auth::logout();
     return redirect('/register');
  })->name('logout');
+
+Route::delete('/deleteUser/{id}', [Usercontroller::class, 'deleteUser'])->name('deleteUser');

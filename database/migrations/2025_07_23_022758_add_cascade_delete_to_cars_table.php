@@ -11,11 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('cars' , function($table){
-            $table->unsignedBigInteger('user_id')->after('id');
+        Schema::table('cars', function (Blueprint $table) {
+             
+            $table->foreign('user_id')
+                ->references('id')
+                ->on('users')
+                ->onDelete('cascade');
 
-            //if you delete account, products is deleting too
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
@@ -24,6 +26,9 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::table('cars', function (Blueprint $table) {
+            $table->dropforeign(['user_id']);
+           
+        });
     }
 };

@@ -1,8 +1,10 @@
 <?php
 
 namespace App\Models;
-
+use Illuminate\Support\Facades\File;
 use Illuminate\Database\Eloquent\Model;
+ 
+use App\Models\User;
 
 class Cars extends Model
 {
@@ -13,4 +15,6 @@ class Cars extends Model
         'age',
         'user_id'
     ];
+    
 }
+ 

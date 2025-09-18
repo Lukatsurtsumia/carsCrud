@@ -34,6 +34,7 @@
   </style>
 </head>
 <body>
+ 
 
 <div class="container">
   <div class="product-form">
@@ -67,6 +68,7 @@
     </form>
   </div>
 </div>
+
  <!-- Product Crud Just for a Account-->
  
 <table class="table table-bordered table-hover text-center align-middle">
@@ -87,7 +89,7 @@
     
     <tbody>
       @foreach ($Cars as $item)
-       @csrf
+        
            <tr>
         <td>{{$item->id}}</td>
         <td>
@@ -97,11 +99,12 @@
         </td>
 
         <td>{{$item->name}}</td>
-        <p><td>{{$item->price}} $</td></p>
+        <td>{{$item->price}} $</td>
          <td>{{$item->age}}</td>
  
         <td>
-<a href="/edit/{{$item->id}}"><button type="submit" class="btn btn-sm btn-warning">Edit</button></a> 
+<a href="{{route('edit',$item->id)}}">
+  <button type="submit" class="btn btn-sm btn-warning">Edit</button></a> 
   
 {{-- DELETE  --}}
  
@@ -113,12 +116,18 @@
        </form>
         </td>
       </tr>
+
+   
       @endforeach
       
       <!-- Add more rows here -->
     </tbody>
   </table>
 </div>
+<div> @if (auth()->user()->role == 'admin')
+  @include('auth.admin')
+  @endif
+ </div>
  
 @else
 <div class="container mt-5">
@@ -134,7 +143,7 @@
 
                         <div class="mb-3">
                             <label for="email" class="form-label">Email address</label>
-                            <input type="email" class="form-control" name="email" id="email" required>
+                            <input type="email" class="form-control" name="email" id="email" required  >
                         </div>
 
                         <div class="mb-3">
@@ -152,7 +161,7 @@
         </div>
     </div>
 </div>
-
+  
 @endauth
 
 

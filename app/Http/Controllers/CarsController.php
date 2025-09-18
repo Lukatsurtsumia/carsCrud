@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Cars;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-
+ 
+ 
 
 class CarsController extends Controller
 {
@@ -23,7 +24,8 @@ class CarsController extends Controller
             'name' => 'required',
             'price'=> 'required',
             'age' => 'required',
-            'image'=>'nullable',
+            'image'=>'nullable|image|max:2048',
+            
         ] );
             $validate['name'] = strip_tags($validate['name']);
             $validate['price'] = strip_tags($validate['price']);
@@ -66,18 +68,12 @@ class CarsController extends Controller
     }
 public function edit($id){
     $Cars = Cars::findOrFail($id);
- if(auth()->user()->id !== $Cars['user_id']){
+ if(auth()->id() !== $Cars['user_id']){
     return redirect('/');
  }
      
    return view('update' ,compact('Cars'));
 }
-    public function delete($id){
-        $Cars = Cars::findOrFail($id);
-        if($Cars->image && file_exists(public_path('storage/'.$Cars->image))){
-             unlink(public_path('storage/'.$Cars->image));
-        }
-        $Cars->delete();
-        return redirect()->route('welcome');
-    }
+   
+   
 }
