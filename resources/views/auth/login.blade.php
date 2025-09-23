@@ -13,30 +13,13 @@
     <form action="{{route('registerCar')}}" method="post" enctype="multipart/form-data"> 
         @csrf
 <style>
-    body {
-      background-color: #89b5e1;
-    }
-
-    .product-form {
-      max-width: 400px;
-      margin: 80px auto;
-      background-color: #fff;
-      padding: 30px;
-      border-radius: 10px;
-      box-shadow: 0 0 20px rgba(0,0,0,0.1);
-    }
-
-    .product-form h3 {
-      margin-bottom: 25px;
-      text-align: center;
-      font-weight: 600;
-    }
+  
   </style>
 </head>
 <body>
  
 
-<div class="container">
+<div class="containers">
   <div class="product-form">
     <h3>Add Product</h3>
     <form action="{{route('registerCar')}}" method="post" enctype="multipart/form-data">
@@ -124,43 +107,43 @@
     </tbody>
   </table>
 </div>
+
 <div> @if (auth()->user()->role == 'admin')
   @include('auth.admin')
   @endif
  </div>
  
 @else
-<div class="container mt-5">
-    <div class="row justify-content-center">
-        <div class="col-md-6">
-            <div class="card shadow">
-                <div class="card-header text-center">
-                    <h4>Login</h4>
-                </div>
-                <div class="card-body">
-                    <form method="POST" action="{{route('loginUser')}}">
-                        @csrf
 
-                        <div class="mb-3">
-                            <label for="email" class="form-label">Email address</label>
-                            <input type="email" class="form-control" name="email" id="email" required  >
-                        </div>
+<body>
+  <div class="login-container">
+    <form class="login-form" method="POST" action="{{ route('loginUser') }}">
+      @csrf
+      <h2>Login</h2>
 
-                        <div class="mb-3">
-                            <label for="password" class="form-label">Password</label>
-                            <input type="password" class="form-control" name="password" id="password" required>
-                        </div>
+      @if (session('error'))
+        <div class="alert">{{ session('error') }}</div>
+      @endif
 
-                        <button type="submit" class="btn btn-primary w-100"> login</button>
-      </form>
-                </div>
-            </div>
-            <div class="text-center mt-3">
-                <small>Don't have an account? <a href="/register">Register here</a></small>
-            </div>
-        </div>
-    </div>
-</div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email" value="{{ old('email') }}" required autofocus>
+        @error('email') <span class="error-msg">{{ $message }}</span> @enderror
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input id="password" name="password" type="password" required>
+        @error('password') <span class="error-msg">{{ $message }}</span> @enderror
+      </div>
+
+      <button type="submit" class="btn-login">Login</button>
+
+      <p class="register-link">Don't have an account? <a href="{{ route('registerUser') }}">Register</a></p>
+    </form>
+  </div>
+ 
+ 
   
 @endauth
 

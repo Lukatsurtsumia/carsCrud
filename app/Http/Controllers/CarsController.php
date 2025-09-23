@@ -10,10 +10,28 @@ use Illuminate\Support\Facades\Auth;
 
 class CarsController extends Controller
 {
-  public function welcome(){
     
-    $Cars = Cars::all();
-    return view('welcome' ,compact('Cars'));
+  public function welcome(Request $request){
+      $Cars = Cars::query();
+         if ($request->filled('name')){
+            $Cars->where('name', 'like', '%' .$request->input('name'). '%');
+         }
+         if($request->filled('min_price')){
+            $Cars->where('price', '>=', $request->min_price);
+         }
+         if($request->filled('max_price')){
+            $Cars->where('price', '<=', $request->max_price);
+         }
+         if($request->filled('min_age')){
+            $Cars->where('age', '>=', $request->min_age);
+         }
+         if($request->filled('max_age')){
+            $Cars->where('age', '<=', $request->max_age);
+         }
+        $Cars = $Cars->paginate(10);
+         return view('welcome', compact('Cars'));
+    
+  
   }
     public function createCar(){
         $Cars =Cars::where('user_id',Auth::id())->get();

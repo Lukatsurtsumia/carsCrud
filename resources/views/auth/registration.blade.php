@@ -8,7 +8,7 @@
     @csrf
     <button class="btn btn-danger">LogOut</button></form>
 @else
-<div class="container mt-5">
+<div class="containers mt-5">
     <div class="row justify-content-center">
         <div class="col-md-6">
             <div class="card shadow">

@@ -1,24 +1,51 @@
  
 @include('header')
 
+{{-- product filter --}}
+ 
 
+ 
+ 
+
+    <h2 class="mb-4 text-center fw-bold">Car List</h2>
+
+    <!-- Filter Form -->
+    <form method="GET" action="{{ route('welcome') }}" class="row g-3 mb-5">
+        <div class="col-md-3">
+            <input type="text" name="name" value="{{ request('name') }}" class="form-control" placeholder="Search by title">
+        </div>
+        <div class="col-md-2">
+            <input type="number" name="min_price" value="{{ request('min_price') }}" class="form-control" placeholder="Min price">
+        </div>
+        <div class="col-md-2">
+            <input type="number" name="max_price" value="{{ request('max_price') }}" class="form-control" placeholder="Max price">
+        </div>
+        <div class="col-md-2">
+            <input type="number" name="min_age" value="{{ request('min_age') }}" class="form-control" placeholder="Min age">
+        </div>
+        <div class="col-md-2">
+            <input type="number" name="max_age" value="{{ request('max_age') }}" class="form-control" placeholder="Max age">
+        </div>
+        <div class="col-md-1 d-grid">
+            <button type="submit" class="btn btn-primary">Filter</button>
+        </div>
+    </form>
+ 
   @auth
   <style>
-    .box {
-        display: flex;
-         flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        height: 30vh;
-        gap: 20px;
-    }
-    .logout-box {
-        margin-top: 30px;
-      text-align: center;
-      width: 100%
-    }
+    
 </style>
+ 
+
   <div class="box">
+    @auth
+  <div>
+    <form action="{{'logout'}}" method="post">
+        @csrf
+        <button class="btn btn-danger" style="">Logout</button>
+    </form>
+  </div>
+  @endauth
   @csrf
   <form action="/login">
     @csrf
@@ -33,108 +60,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{asset('css/login.css')}}">
   <title>Product CRUD</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #f8f9fa;
-      margin: 0;
-     
-    }
-
-    h1 {
-      text-align: center;
-      margin-bottom: 30px;
-    }
-
-    .container {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-      gap: 20px;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .product-card {
-      background: #fff;
-      border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-      overflow: hidden;
-      transition: transform 0.2s;
-      display: flex;
-      flex-direction: column;
-      text-align: center;
-    }
-
-    .product-card:hover {
-      transform: translateY(-5px);
-    }
-
-    .product-image {
-      width: 100%;
-      height: 180px;
-      background: #ddd ;
-    }
-
-    .product-body {
-      padding: 15px;
-      flex: 1;
-    }
-
-    .product-title {
-      font-size: 18px;
-      font-weight: bold;
-      margin-bottom: 10px;
-    }
-
-    .product-info {
-      font-size: 14px;
-      margin: 5px 0;
-      color: #555;
-    }
-
-    .actions {
-      display: flex;
-      justify-content: center;
-      gap: 10px;
-      margin-top: 10px;
-    }
-
-    .btn {
-      border: none;
-      padding: 8px 12px;
-      border-radius: 5px;
-      cursor: pointer;
-      font-size: 14px;
-      transition: background 0.2s;
-    }
-
-    .btn-buy {
-      background: #007bff;
-      color: white;
-    }
-
-    .btn-buy:hover {
-      background: #0056b3;
-    }
-
-    .btn-edit {
-      background: #ffc107;
-      color: black;
-    }
-
-    .btn-edit:hover {
-      background: #e0a800;
-    }
-
-    .btn-delete {
-      background: #dc3545;
-      color: white;
-    }
-
-    .btn-delete:hover {
-      background: #b02a37;
-    }
+    
   </style>
 </head>
 <body>
@@ -152,21 +81,23 @@
       </div>
         @endif
       <div class="product-body">
-        <div class="product-title">{{$item->title}}</div>
+        <div class="product-title">{{$item->name}}</div>
         <div class="product-info">Price: {{$item->price}} $</div>
         <div class="product-info">Age: {{$item->age}} years</div>
         <div class="actions">
           <button class="btn btn-buy">Buy</button>
            
         </div>
+      
       </div>
     </div>
 
     @endforeach
+          {{ $Cars->links() }}
   
  
      
   </div>
-
+ 
 </body>
 </html>
