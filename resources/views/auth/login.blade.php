@@ -19,38 +19,40 @@
 <body>
  
 
-<div class="containers">
-  <div class="product-form">
+<div class="product-form-container">
+  <div class="product-form-box">
     <h3>Add Product</h3>
-    <form action="{{route('registerCar')}}" method="post" enctype="multipart/form-data">
+    <form action="{{ route('registerCar') }}" method="post" enctype="multipart/form-data">
+      @csrf
       <!-- Product Image -->
-      <div class="mb-3">
-        <label for="productImage" class="form-label">Image</label>
-        <input class="form-control" type="file" id="productImage" name="image" accept="image/*" required>
+      <div>
+        <label for="productImage">Image</label>
+        <input type="file" id="productImage" name="image" accept="image/*" required>
       </div>
 
       <!-- Product Name -->
-      <div class="mb-3">
-        <label for="productName" class="form-label">Name</label>
-        <input type="text" class="form-control" id="productName" name="name" required>
+      <div>
+        <label for="productName">Name</label>
+        <input type="text" id="productName" name="name" required>
       </div>
 
       <!-- Product Price -->
-      <div class="mb-3">
-        <label for="productPrice" class="form-label">Price ($)</label>
-        <input type="number" step="0.01" class="form-control" id="productPrice" name="price" required>
+      <div>
+        <label for="productPrice">Price ($)</label>
+        <input type="number" step="0.01" id="productPrice" name="price" required>
       </div>
 
       <!-- Product Age -->
-      <div class="mb-3">
-        <label for="productAge" class="form-label">Age</label>
-        <input type="number" class="form-control" id="productAge" name="age" required>
+      <div>
+        <label for="productAge">Age</label>
+        <input type="number" id="productAge" name="age" required>
       </div>
 
-      <button type="submit" class="btn btn-primary w-100">Submit</button>
+      <button type="submit" class="btn-submit">Submit</button>
     </form>
   </div>
 </div>
+
 
  <!-- Product Crud Just for a Account-->
  

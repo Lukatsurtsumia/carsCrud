@@ -1,0 +1,72 @@
+/* Wrap everything in a unique parent */
+.product-form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+  background: #f9fafb;
+}
+
+/* Card */
+.product-form-box {
+  background: #fff;
+  padding: 30px;
+  width: 100%;
+  max-width: 450px;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+}
+
+/* Title */
+.product-form-box h3 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 22px;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+/* Labels */
+.product-form-box label {
+  display: block;
+  font-size: 14px;
+  margin-bottom: 6px;
+  color: #374151;
+}
+
+/* Inputs */
+.product-form-box input[type="text"],
+.product-form-box input[type="number"],
+.product-form-box input[type="file"] {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  font-size: 14px;
+  margin-bottom: 15px;
+  transition: border 0.2s;
+}
+
+.product-form-box input:focus {
+  border-color: #2563eb;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(37,99,235,0.2);
+}
+
+/* Submit button */
+.product-form-box .btn-submit {
+  width: 100%;
+  background: #2563eb;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.product-form-box .btn-submit:hover {
+  background: #1e40af;
+}

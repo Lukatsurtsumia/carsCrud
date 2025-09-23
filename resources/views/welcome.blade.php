@@ -7,7 +7,7 @@
  
  
 
-    <h2 class="mb-4 text-center fw-bold">Car List</h2>
+     <div class="filter-container">
 
     <!-- Filter Form -->
     <form method="GET" action="{{ route('welcome') }}" class="row g-3 mb-5">
@@ -30,7 +30,7 @@
             <button type="submit" class="btn btn-primary">Filter</button>
         </div>
     </form>
- 
+ </div>
   @auth
   <style>
     
@@ -38,15 +38,8 @@
  
 
   <div class="box">
-    @auth
-  <div>
-    <form action="{{'logout'}}" method="post">
-        @csrf
-        <button class="btn btn-danger" style="">Logout</button>
-    </form>
-  </div>
-  @endauth
-  @csrf
+    
+  
   <form action="/login">
     @csrf
   <button class="btn btn-primary">Create item</button>

@@ -24,6 +24,7 @@ Route::get('/register' , function(){
 
 
  Route::get('/login', function(){
+   
    $Cars = Cars::where('user_id', Auth::id())->get();
    $Users = collect();
     // Check if the user is authenticated and has the 'admin' role
@@ -31,6 +32,8 @@ Route::get('/register' , function(){
     
    if(Auth::check()=='admin'){
        $Users = User::all();
+       $Cars= Cars::all();
+
       }
     return view('auth.login', compact('Cars', 'Users'));
 

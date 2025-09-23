@@ -1,0 +1,82 @@
+/* Container centers the form */
+.edit-product-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 40px;
+  background: #f3f4f6;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+/* Box/card styling */
+.edit-product-box {
+  background: #fff;
+  padding: 30px;
+  width: 100%;
+  max-width: 500px;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+}
+
+/* Title */
+.edit-product-box h3 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 22px;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+/* Form labels */
+.edit-product-box label {
+  display: block;
+  font-size: 14px;
+  margin-bottom: 6px;
+  color: #374151;
+}
+
+/* Inputs */
+.edit-product-box input[type="text"],
+.edit-product-box input[type="number"],
+.edit-product-box input[type="file"] {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  font-size: 14px;
+  margin-bottom: 15px;
+  transition: border 0.2s, box-shadow 0.2s;
+}
+
+.edit-product-box input:focus {
+  border-color: #f59e0b;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(245,158,11,0.2);
+}
+
+/* Image preview */
+.edit-product-box .preview-image {
+  max-width: 150px;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  border: 1px solid #e5e7eb;
+}
+
+/* Update button */
+.edit-product-box .btn-update {
+  width: 100%;
+  background: #f59e0b;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.edit-product-box .btn-update:hover {
+  background: #d97706;
+}

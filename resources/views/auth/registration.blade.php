@@ -8,39 +8,42 @@
     @csrf
     <button class="btn btn-danger">LogOut</button></form>
 @else
-<div class="containers mt-5">
-    <div class="row justify-content-center">
-        <div class="col-md-6">
-            <div class="card shadow">
-                <div class="card-header text-center">
-                    <h4>Register</h4>
-                </div>
-                <div class="card-body">
-                    <form method="POST" action="{{route('registerUser')}}">
-                        <!-- Laravel CSRF Token -->
-                        @csrf
 
-                        <div class="mb-3">
-                            <label for="name" class="form-label">Full Name</label>
-                            <input type="text" class="form-control" id="name" name="name" >
-                        </div>
+<body>
+  <div class="login-container">
+    <form class="login-form" method="POST" action="{{ route('registerUser') }}">
+      @csrf
+      <h2>Registration</h2>
 
-                        <div class="mb-3">
-                            <label for="email" class="form-label">Email address</label>
-                            <input type="email" class="form-control" id="email" name="email" >
-                        </div>
-                        
-                        <div class="mb-3">
-                            <label for="password" class="form-label">Password</label>
-                            <input type="password" class="form-control" id="password" name="password" required>
-                        </div>
+      @if (session('error'))
+        <div class="alert">{{ session('error') }}</div>
+      @endif
+
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input id="title" name="name" type="title" value="{{ old('name') }}" required autofocus>
+        @error('name') <span class="error-msg">{{ $message }}</span> @enderror
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email" value="{{ old('email') }}" required autofocus>
+        @error('email') <span class="error-msg">{{ $message }}</span> @enderror
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input id="password" name="password" type="password" required>
+        @error('password') <span class="error-msg">{{ $message }}</span> @enderror
+      </div>
+
+      <button type="submit" class="btn-login">Register</button>
+
+      <p class="register-link">Don't have an account? <a href="{{ route('loginUser') }}">Login</a></p>
+    </form>
+  </div>
  
-                        <button type="submit" class="btn btn-primary w-100">Register</button>
-                    </form>
-                </div>
-            </div>
-
-            <div class="text-center mt-3">
-                <small>Already have an account? <a href="/login">Login here</a></small>
-            </div>
+ 
+  
 @endauth
+
+ 
